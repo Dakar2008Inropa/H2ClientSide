@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Torque";
+}
+<h2>Torque</h2>
+
+<div class="clearfix">
+
+    <div class="col-xs-12 convertconainer">
+        <p class="fromtext">Convert From:</p>
+        <select id="FromSelect">
+            <option value="dyne-cm">Dyne Centimeter</option>
+            <option value="gf-cm">Gram-Force Centimeter</option>
+            <option value="kgf-m">Kilogram-force meter</option>
+            <option value="kN-m">Kilonewton meter</option>
+            <option value="kp-m">Kilopond meter</option>
+            <option value="MN-m">Meganewton meter</option>
+            <option value="µN-m">Micronewton meter</option>
+            <option value="mN-m">Millinewton meter</option>
+            <option value="N-m">Newton meter</option>
+            <option value="ozf-ft">Ounce-force foot</option>
+            <option value="ozf-in">Ounce-force inch</option>
+            <option value="lbf-ft">Pound-force foot</option>
+            <option value="lbf-in">Pound-force inch</option>
+        </select>
+        <p class="totext">To</p>
+        <select id="ToSelect" class="fromselect">
+            <option value="dyne-cm">Dyne Centimeter</option>
+            <option value="gf-cm">Gram-Force Centimeter</option>
+            <option value="kgf-m">Kilogram-force meter</option>
+            <option value="kN-m">Kilonewton meter</option>
+            <option value="kp-m">Kilopond meter</option>
+            <option value="MN-m">Meganewton meter</option>
+            <option value="µN-m">Micronewton meter</option>
+            <option value="mN-m">Millinewton meter</option>
+            <option value="N-m">Newton meter</option>
+            <option value="ozf-ft">Ounce-force foot</option>
+            <option value="ozf-in">Ounce-force inch</option>
+            <option value="lbf-ft">Pound-force foot</option>
+            <option value="lbf-in">Pound-force inch</option>
+        </select>
+        <input type="text" id="UnitToConvert" autofocus />
+        <button type="button" class="btn btn-success btn-xs converbtn" id="ConvertButton" data-conversion="torque">Convert</button>
+    </div>
+
+    <div class="col-xs-12 convertresultcontainer">
+        <p>
+            <span id="UserInputValue"></span>
+            <span id="ConvertFromUnitDisplay"></span>
+            =
+            <span id="ResultValue"></span>
+            <span id="ConvertToUnitDisplay"></span>
+        </p>
+    </div>
+
+</div>
+@section Scripts{
+    <script src="~/Scripts/Conversion.js"></script>
+}

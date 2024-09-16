@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Speed";
+}
+<h2>Speed</h2>
+
+<div class="clearfix">
+
+    <div class="col-xs-12 convertconainer">
+        <p class="fromtext">Convert From:</p>
+        <select id="FromSelect">
+            <option value="C">C</option>
+            <option value="centimeter/hour">Centimeter/Hour</option>
+            <option value="centimeter/minute">Centimeter/Minute</option>
+            <option value="centimeter/second">Centimeter/Second</option>
+            <option value="foot/hour">Foot/Hour</option>
+            <option value="foot/minute">Foot/Minute</option>
+            <option value="foot/second">Foot/Second</option>
+            <option value="kilometer/hour">Kilometer/Hour</option>
+            <option value="kilometer/minute">Kilometer/Minute</option>
+            <option value="kilometer/second">Kilometer/Second</option>
+            <option value="knot">Knot</option>
+            <option value="mach">Mach</option>
+            <option value="meter/hour">Meter/Hour</option>
+            <option value="meter/minute">Meter/Minute</option>
+            <option value="meter/second">Meter/Second</option>
+            <option value="mile/hour">Mile/Hour</option>
+            <option value="mile/minute">Mile/Minute</option>
+            <option value="mile/second">Mile/Second</option>
+        </select>
+        <p class="totext">To</p>
+        <select id="ToSelect" class="fromselect">
+            <option value="C">C</option>
+            <option value="centimeter/hour">Centimeter/Hour</option>
+            <option value="centimeter/minute">Centimeter/Minute</option>
+            <option value="centimeter/second">Centimeter/Second</option>
+            <option value="foot/hour">Foot/Hour</option>
+            <option value="foot/minute">Foot/Minute</option>
+            <option value="foot/second">Foot/Second</option>
+            <option value="kilometer/hour">Kilometer/Hour</option>
+            <option value="kilometer/minute">Kilometer/Minute</option>
+            <option value="kilometer/second">Kilometer/Second</option>
+            <option value="knot">Knot</option>
+            <option value="mach">Mach</option>
+            <option value="meter/hour">Meter/Hour</option>
+            <option value="meter/minute">Meter/Minute</option>
+            <option value="meter/second">Meter/Second</option>
+            <option value="mile/hour">Mile/Hour</option>
+            <option value="mile/minute">Mile/Minute</option>
+            <option value="mile/second">Mile/Second</option>
+        </select>
+        <input type="text" id="UnitToConvert" autofocus />
+        <button type="button" class="btn btn-success btn-xs converbtn" id="ConvertButton" data-conversion="speed">Convert</button>
+    </div>
+
+    <div class="col-xs-12 convertresultcontainer">
+        <p>
+            <span id="UserInputValue"></span>
+            <span id="ConvertFromUnitDisplay"></span>
+            =
+            <span id="ResultValue"></span>
+            <span id="ConvertToUnitDisplay"></span>
+        </p>
+    </div>
+
+</div>
+@section Scripts{
+    <script src="~/Scripts/Conversion.js"></script>
+}

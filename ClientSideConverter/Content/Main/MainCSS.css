@@ -1,0 +1,51 @@
+﻿* {
+  font-family: Verdana; }
+
+.body-content {
+  margin-top: 50px; }
+
+h2 {
+  font-weight: bold; }
+
+.convertconainer {
+  font-family: Verdana;
+  font-size: 12px; }
+  .convertconainer select {
+    display: inline-block;
+    min-width: 160px; }
+  .convertconainer p {
+    display: inline-block; }
+  .convertconainer .fromtext {
+    padding-right: 5px; }
+  .convertconainer .totext {
+    padding-left: 5px;
+    padding-right: 5px; }
+  .convertconainer .converbtn {
+    margin-left: 5px;
+    margin-top: -5px; }
+  .convertconainer input {
+    width: 160px;
+    text-align: center;
+    border: #000 solid 1px;
+    outline: none; }
+  .convertconainer .fromselect {
+    margin-right: 10px; }
+
+.convertresultcontainer {
+  border: #000 solid 1px;
+  border-radius: 10px;
+  background: #760000;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px;
+  user-select: none; }
+  .convertresultcontainer p {
+    margin: 0;
+    padding: 0; }
+  .convertresultcontainer #UserInputValue {
+    color: #ffd800; }
+  .convertresultcontainer #ResultValue {
+    color: #4cff00; }

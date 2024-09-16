@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Temperature";
+}
+<h2>Temperature</h2>
+
+<div class="clearfix">
+
+    <div class="col-xs-12 convertconainer">
+        <p class="fromtext">Convert From:</p>
+        <select id="FromSelect">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+            <option value="rankine">Rankine</option>
+        </select>
+        <p class="totext">To</p>
+        <select id="ToSelect" class="fromselect">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+            <option value="rankine">Rankine</option>
+        </select>
+        <input type="text" id="UnitToConvert" autofocus />
+        <button type="button" class="btn btn-success btn-xs converbtn" id="ConvertButton" data-conversion="temp">Convert</button>
+    </div>
+
+    <div class="col-xs-12 convertresultcontainer">
+        <p>
+            <span id="UserInputValue"></span>
+            <span id="ConvertFromUnitDisplay"></span>
+            =
+            <span id="ResultValue"></span>
+            <span id="ConvertToUnitDisplay"></span>
+        </p>
+    </div>
+
+</div>
+@section Scripts{
+    <script src="~/Scripts/Conversion.js"></script>
+}

@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Pressure";
+}
+<h2>Pressure</h2>
+
+<div class="clearfix">
+
+    <div class="col-xs-12 convertconainer">
+        <p class="fromtext">Convert From:</p>
+        <select id="FromSelect">
+            <option value="Atmosphere">Atmosphere</option>
+            <option value="Bar">Bar</option>
+            <option value="Centimeters of mercury">Centimeters of mercury</option>
+            <option value="Dyne/centimeter²">dyne/centimeter²</option>
+            <option value="Inches of mercury">inches of mercury</option>
+            <option value="Kilogram/centimeter²">kilogram/centimeter²</option>
+            <option value="Kilogram/meter²">kilogram/meter²</option>
+            <option value="Kilopascal">Kilopascal</option>
+            <option value="Megapascal">Megapascal</option>
+            <option value="Microbar">Microbar</option>
+            <option value="Millibar">Millibar</option>
+            <option value="Millimeters of mercury">Millimeters of mercury</option>
+            <option value="Pascal">Pascal</option>
+            <option value="Pound/foot²">Pound/foot²</option>
+            <option value="Pound/inch²">Pound/inch²</option>
+            <option value="PSI">PSI</option>
+            <option value="Ton/foot²">Ton/foot²</option>
+            <option value="Ton/inch²">Ton/inch²</option>
+            <option value="Torr">Torr</option>
+        </select>
+        <p class="totext">To</p>
+        <select id="ToSelect" class="fromselect">
+            <option value="Atmosphere">Atmosphere</option>
+            <option value="Bar">Bar</option>
+            <option value="Centimeters of mercury">Centimeters of mercury</option>
+            <option value="Dyne/centimeter²">dyne/centimeter²</option>
+            <option value="Inches of mercury">inches of mercury</option>
+            <option value="Kilogram/centimeter²">kilogram/centimeter²</option>
+            <option value="Kilogram/meter²">kilogram/meter²</option>
+            <option value="Kilopascal">Kilopascal</option>
+            <option value="Megapascal">Megapascal</option>
+            <option value="Microbar">Microbar</option>
+            <option value="Millibar">Millibar</option>
+            <option value="Millimeters of mercury">Millimeters of mercury</option>
+            <option value="Pascal">Pascal</option>
+            <option value="Pound/foot²">Pound/foot²</option>
+            <option value="Pound/inch²">Pound/inch²</option>
+            <option value="PSI">PSI</option>
+            <option value="Ton/foot²">Ton/foot²</option>
+            <option value="Ton/inch²">Ton/inch²</option>
+            <option value="Torr">Torr</option>
+        </select>
+        <input type="text" id="UnitToConvert" autofocus />
+        <button type="button" class="btn btn-success btn-xs converbtn" id="ConvertButton" data-conversion="pressure">Convert</button>
+    </div>
+
+    <div class="col-xs-12 convertresultcontainer">
+        <p>
+            <span id="UserInputValue"></span>
+            <span id="ConvertFromUnitDisplay"></span>
+            =
+            <span id="ResultValue"></span>
+            <span id="ConvertToUnitDisplay"></span>
+        </p>
+    </div>
+
+</div>
+@section Scripts{
+    <script src="~/Scripts/Conversion.js"></script>
+}

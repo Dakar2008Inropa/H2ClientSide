@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Time";
+}
+<h2>Time</h2>
+
+<div class="clearfix">
+
+    <div class="col-xs-12 convertconainer">
+        <p class="fromtext">Convert From:</p>
+        <select id="FromSelect">
+            <option value="century">Century</option>
+            <option value="day">Day</option>
+            <option value="decade">Decade</option>
+            <option value="fortnight">Fortnight</option>
+            <option value="hour">Hour</option>
+            <option value="leap-year">Leap Year</option>
+            <option value="millennium">Millennium</option>
+            <option value="millisecond">Millisecond</option>
+            <option value="minute">Minute</option>
+            <option value="month (30 day)">Month (30 day)</option>
+            <option value="nanosecond">Nanosecond</option>
+            <option value="second">Second</option>
+            <option value="week">Week</option>
+            <option value="year">Year</option>
+        </select>
+        <p class="totext">To</p>
+        <select id="ToSelect" class="fromselect">
+            <option value="century">Century</option>
+            <option value="day">Day</option>
+            <option value="decade">Decade</option>
+            <option value="fortnight">Fortnight</option>
+            <option value="hour">Hour</option>
+            <option value="leap-year">Leap Year</option>
+            <option value="millennium">Millennium</option>
+            <option value="millisecond">Millisecond</option>
+            <option value="minute">Minute</option>
+            <option value="month (30 day)">Month (30 day)</option>
+            <option value="nanosecond">Nanosecond</option>
+            <option value="second">Second</option>
+            <option value="week">Week</option>
+            <option value="year">Year</option>
+        </select>
+        <input type="text" id="UnitToConvert" autofocus />
+        <button type="button" class="btn btn-success btn-xs converbtn" id="ConvertButton" data-conversion="time">Convert</button>
+    </div>
+
+    <div class="col-xs-12 convertresultcontainer">
+        <p>
+            <span id="UserInputValue"></span>
+            <span id="ConvertFromUnitDisplay"></span>
+            =
+            <span id="ResultValue"></span>
+            <span id="ConvertToUnitDisplay"></span>
+        </p>
+    </div>
+
+</div>
+@section Scripts{
+    <script src="~/Scripts/Conversion.js"></script>
+}

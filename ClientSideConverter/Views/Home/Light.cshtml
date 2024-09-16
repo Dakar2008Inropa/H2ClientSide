@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Light";
+}
+<h2>Light</h2>
+
+<div class="clearfix">
+
+    <div class="col-xs-12 convertconainer">
+        <p class="fromtext">Convert From:</p>
+        <select id="FromSelect">
+            <option value="flame">flame</option>
+            <option value="footCandles">foot-candles</option>
+            <option value="lux">lux</option>
+            <option value="meter-candles">meter-candles</option>
+        </select>
+        <p class="totext">To</p>
+        <select id="ToSelect" class="fromselect">
+            <option value="flame">flame</option>
+            <option value="footCandles">foot-candles</option>
+            <option value="lux">lux</option>
+            <option value="meter-candles">meter-candles</option>
+        </select>
+        <input type="text" id="UnitToConvert" autofocus />
+        <button type="button" class="btn btn-success btn-xs converbtn" id="ConvertButton" data-conversion="light">Convert</button>
+    </div>
+
+    <div class="col-xs-12 convertresultcontainer">
+        <p>
+            <span id="UserInputValue">1200</span>
+            <span id="ConvertFromUnitDisplay">ms</span>
+            =
+            <span id="ResultValue">500</span>
+            <span id="ConvertToUnitDisplay">ms</span>
+        </p>
+    </div>
+
+</div>
+@section Scripts{
+    <script src="~/Scripts/Conversion.js"></script>
+}

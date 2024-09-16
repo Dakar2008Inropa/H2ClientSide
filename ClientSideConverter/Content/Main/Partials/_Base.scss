@@ -1,0 +1,67 @@
+﻿*{
+    font-family: Verdana;
+}
+.body-content{
+    margin-top: 50px;
+}
+h2{
+    font-weight: bold;
+}
+.convertconainer{
+    font-family: Verdana;
+    font-size: 12px;
+    select{
+        display: inline-block;
+        min-width: 160px;
+    }
+    p{
+        display: inline-block;
+    }
+    .fromtext{
+        padding-right: 5px;
+    }
+    .totext{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .converbtn{
+        margin-left: 5px;
+        margin-top: -5px;
+    }
+
+    input{
+        width: 160px;
+        text-align: center;
+        border: #000 solid 1px;
+        outline: none;
+    }
+    .fromselect{
+        margin-right: 10px;
+    }
+}
+.convertresultcontainer {
+    border: #000 solid 1px;
+    border-radius: 10px;
+    background: #760000;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    user-select: none;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    #UserInputValue {
+        color: #ffd800;
+    }
+
+    #ResultValue{
+        color: #4cff00;
+    }
+}

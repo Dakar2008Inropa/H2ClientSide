@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Power";
+}
+<h2>Power</h2>
+
+<div class="clearfix">
+
+    <div class="col-xs-12 convertconainer">
+        <p class="fromtext">Convert From:</p>
+        <select id="FromSelect">
+            <option value="BTU/Hour">BTU/hour (BTUH)</option>
+            <option value="BTU/minute">BTU/minute (BTUM)</option>
+            <option value="BTU/second">BTU/second (BTUS)</option>
+            <option value="Calorie/second">Calorie/second</option>
+            <option value="Horsepower">Horsepower (HP)</option>
+            <option value="Kilowatt">Kilowatt (kw)</option>
+            <option value="Megawatt">Megawatt (mw)</option>
+            <option value="Pound-feet/minute">Pound-feet/minute</option>
+            <option value="Pound-feet/second">Pound-feet/second</option>
+            <option value="Watt">Watt</option>
+        </select>
+        <p class="totext">To</p>
+        <select id="ToSelect" class="fromselect">
+            <option value="BTU/Hour">BTU/hour (BTUH)</option>
+            <option value="BTU/minute">BTU/minute (BTUM)</option>
+            <option value="BTU/second">BTU/second (BTUS)</option>
+            <option value="Calorie/second">Calorie/second</option>
+            <option value="Horsepower">Horsepower (HP)</option>
+            <option value="Kilowatt">Kilowatt (kw)</option>
+            <option value="Megawatt">Megawatt (mw)</option>
+            <option value="Pound-feet/minute">Pound-feet/minute</option>
+            <option value="Pound-feet/second">Pound-feet/second</option>
+            <option value="Watt">Watt</option>
+        </select>
+        <input type="text" id="UnitToConvert" autofocus />
+        <button type="button" class="btn btn-success btn-xs converbtn" id="ConvertButton" data-conversion="power">Convert</button>
+    </div>
+
+    <div class="col-xs-12 convertresultcontainer">
+        <p>
+            <span id="UserInputValue">1200</span>
+            <span id="ConvertFromUnitDisplay">ms</span>
+            =
+            <span id="ResultValue">500</span>
+            <span id="ConvertToUnitDisplay">ms</span>
+        </p>
+    </div>
+
+</div>
+@section Scripts{
+    <script src="~/Scripts/Conversion.js"></script>
+}
