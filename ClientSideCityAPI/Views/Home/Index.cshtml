@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<h1>Todo List</h1>
+<div class="clearfix">
+    <div class="col-xs-12 marginbottom">
+        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#addModal">Add Todo</button>
+    </div>
+</div>
+<div class="clearfix">
+    <div class="col-xs-12">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th class="text-center">Is Completed</th>
+                    <th class="text-center">Functions</th>
+                </tr>
+            </thead>
+            <tbody id="TableContent">
+            </tbody>
+        </table>
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="editModalLabel">Edit Modal</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="clearfix">
+                            <div class="col-xs-6">
+                                <label for="NameInput">Name:</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="text" id="NameInput" />
+                            </div>
+                        </div>
+                        <div class="clearfix margintop">
+                            <div class="col-xs-6">
+                                <label for="IsComplete">Is Complete:</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="checkbox" id="IsComplete" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" id="SaveItemBtn">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="addModalLabel">Add Todo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="clearfix">
+                            <div class="col-xs-6">
+                                <label for="AddNameInput">Name:</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="text" id="AddNameInput" class="text-center" />
+                            </div>
+                        </div>
+                        <div class="clearfix margintop">
+                            <div class="col-xs-6">
+                                <label for="AddIsComplete">Is Complete:</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="checkbox" id="AddIsComplete" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" id="AddItemBtn">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/TodoList.js"></script>
+}
