@@ -21,6 +21,9 @@ namespace ClientSideStudentAPI
 
             bundles.Add(new StyleBundle("~/Library/CSS/BootstrapCSS").Include(
                       "~/Library/CSS/Bootstrap/bootstrap.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Main/Maincss").Include(
+                "~/Content/Main/MainCSS.min.css"));
         }
     }
 }

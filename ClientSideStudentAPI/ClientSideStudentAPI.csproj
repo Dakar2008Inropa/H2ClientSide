@@ -127,6 +127,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Main\MainCSS.css">
+      <DependentUpon>MainCSS.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Main\MainCSS.min.css">
+      <DependentUpon>MainCSS.css</DependentUpon>
+    </Content>
     <Content Include="Library\CSS\Bootstrap\bootstrap-theme.css" />
     <Content Include="Library\CSS\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Library\CSS\Bootstrap\bootstrap.css" />
@@ -136,6 +142,12 @@
     <Content Include="Global.asax" />
     <Content Include="Library\JS\Bootstrap\bootstrap.js" />
     <Content Include="Library\JS\Bootstrap\bootstrap.min.js" />
+    <Content Include="Content\Main\MainCSS.scss" />
+    <Content Include="Content\Main\Partials\_Base.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Library\JS\JQuery\jquery-3.7.1.intellisense.js" />
     <Content Include="Library\JS\JQuery\jquery-3.7.1.js" />
     <Content Include="Library\JS\JQuery\jquery-3.7.1.min.js" />
@@ -160,13 +172,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
@@ -214,7 +224,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\BuildWebCompiler.1.12.394\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildWebCompiler.1.12.394\build\BuildWebCompiler.targets'))" />
   </Target>
+  <Import Project="..\packages\BuildWebCompiler.1.12.394\build\BuildWebCompiler.targets" Condition="Exists('..\packages\BuildWebCompiler.1.12.394\build\BuildWebCompiler.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

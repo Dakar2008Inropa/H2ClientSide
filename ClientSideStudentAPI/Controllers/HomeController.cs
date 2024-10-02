@@ -13,18 +13,11 @@ namespace ClientSideStudentAPI.Controllers
             return View();
         }
 
-        public ActionResult About()
+        #region PartialViews
+        public PartialViewResult _NavBar()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return PartialView();
         }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        #endregion
     }
 }
