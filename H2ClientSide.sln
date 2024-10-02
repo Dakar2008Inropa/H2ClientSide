@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientSideConverter", "Clie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientSideCityAPI", "ClientSideCityAPI\ClientSideCityAPI.csproj", "{31C33ECA-C85C-4ECA-8240-4EA56C538FB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientSideStudentAPI", "ClientSideStudentAPI\ClientSideStudentAPI.csproj", "{AEFCE3EF-EA76-43D9-9A47-36DF9D84F3DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{31C33ECA-C85C-4ECA-8240-4EA56C538FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31C33ECA-C85C-4ECA-8240-4EA56C538FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31C33ECA-C85C-4ECA-8240-4EA56C538FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEFCE3EF-EA76-43D9-9A47-36DF9D84F3DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEFCE3EF-EA76-43D9-9A47-36DF9D84F3DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEFCE3EF-EA76-43D9-9A47-36DF9D84F3DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEFCE3EF-EA76-43D9-9A47-36DF9D84F3DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
