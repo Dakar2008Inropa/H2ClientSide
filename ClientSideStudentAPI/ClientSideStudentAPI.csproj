@@ -175,9 +175,6 @@
     <Content Include="Views\Home\_NavBar.cshtml" />
     <Content Include="Views\Home\Teams.cshtml" />
     <Content Include="Views\Home\Courses.cshtml" />
-    <Content Include="Views\Home\CreateStudent.cshtml" />
-    <Content Include="Views\Home\CreateTeam.cshtml" />
-    <Content Include="Views\Home\CreateCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

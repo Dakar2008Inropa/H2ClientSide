@@ -18,26 +18,6 @@ namespace ClientSideStudentAPI.Controllers
             return View();
         }
 
-        public ActionResult Courses()
-        {
-            return View();
-        }
-
-        public ActionResult CreateStudent()
-        {
-            return View();
-        }
-
-        public ActionResult CreateTeam()
-        {
-            return View();
-        }
-
-        public ActionResult CreateCourse()
-        {
-            return View();
-        }
-
         #region PartialViews
         public PartialViewResult _NavBar()
         {
