@@ -61,3 +61,19 @@ h1{
             margin-right: 5px;
         }
 }
+
+.panel-group{
+    .panel{
+        .panel-heading{
+            background: #1f375c;
+            .panel-title{
+                text-align: center;
+                display: block !important; 
+                a{
+                    display: block !important;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

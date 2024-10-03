@@ -2,7 +2,9 @@
     ViewBag.Title = "Elever";
 }
 <h1>Elever</h1>
+
 <button type="button" class="btn btn-primary" id="AddStudentBtn">Opret Elev</button>
+
 <table class="table table-striped" id="StudentTable">
     <thead>
         <tr>
@@ -43,9 +45,48 @@
                     <div class="form-group">
                         <label>Hold</label>
                         <select id="EditTeams" class="form-control">
-
                         </select>
                     </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th width="50%">Fag</th>
+                                <th width="50%" class="text-center">Funktioner</th>
+                            </tr>
+                        </thead>
+                        <tbody class="studentcoursestable">
+                            <tr>
+                                <td>Sex og Samfund</td>
+                                <td class="text-center">
+                                    <button class="btn btn-danger btn-sm btn-block">Fjern</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="panel-group" id="editcollapse" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="collapse-heading-one">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#editcollapse" href="#editcollapse-one" aria-expanded="false" aria-controls="collapse-one">
+                                        Tilføj Fag
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="editcollapse-one" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapse-heading-one">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label for="AddCourseSelect">Vælg Fag</label>
+                                        <select id="AddCourseSelect" class="form-control">
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn-success btn-block" id="AddStudentCourseBtn">Tilføj Fag</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">
@@ -87,6 +128,7 @@
     </div>
 </div>
 
+
 @section Scripts{
     <script src="~/Scripts/Students.js"></script>
-} 
+}

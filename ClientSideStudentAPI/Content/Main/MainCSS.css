@@ -47,3 +47,12 @@ h1 {
     font-weight: bold; }
   .modal-footer .btn-inlineblock:nth-child(1) {
     margin-right: 5px; }
+
+.panel-group .panel .panel-heading {
+  background: #1f375c; }
+  .panel-group .panel .panel-heading .panel-title {
+    text-align: center;
+    display: block !important; }
+    .panel-group .panel .panel-heading .panel-title a {
+      display: block !important;
+      text-decoration: none; }

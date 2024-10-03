@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
     var mainAPI = "https://studentwebapi.buchwaldshave34.dk/api/Student/";
     var teamAPI = "https://studentwebapi.buchwaldshave34.dk/api/Team/";
+    var courseAPI = "https://studentwebapi.buchwaldshave34.dk/api/Course/";
+    var studentCourseAPI = "https://studentwebapi.buchwaldshave34.dk/api/StudentCourse/";
 
     GetAllStudents(mainAPI);
 
@@ -15,9 +17,20 @@
         DeleteStudent(mainAPI, dataId);
     });
 
+    $(document).on("click", ".deleteCourseBtn", function () {
+        var studentId = $(this).attr("data-studentId");
+        var courseId = $(this).attr("data-courseId");
+        RemoveCourseFromStudent(mainAPI, courseAPI, studentCourseAPI, studentId, courseId);
+    });
+
     $("#EditStudentModal").on('shown.bs.modal', function () {
         var dataId = $(this).data("id");
         $("#EditFirstname").val("");
+
+        $("#editcollapse-one").removeClass("in");
+
+        $("#AddStudentCourseBtn").data("studentId", dataId);
+
         $.getJSON(mainAPI + "GetStudent/" + dataId, { UserName: "Daniel", UseLazyLoading: true }, function (data) {
 
             $("#EditStudentModalLabel").text("Rediger - " + data.studentName);
@@ -30,6 +43,33 @@
                     $("#EditTeams").append($('<option>', { value: valueOfElement.teamID, text: valueOfElement.teamName }));
                 });
                 $("#EditTeams").val(data.teamID);
+            });
+
+            var studentCourses = $(".studentcoursestable");
+
+            studentCourses.empty();
+
+            $.each(data.studentCourses, function (index, item) {
+                studentCourses.append(
+                    "<tr>" +
+                    "<td>" + item.course.courseName + "</td>" +
+                    "<td>" +
+                    "<a class='btn btn-danger btn-sm btn-block deleteCourseBtn' data-studentId='" + data.studentID + "' data-courseId='"+ item.courseID +"'>Fjern</a>" +
+                    "</td>" +
+                    "</tr>"
+                );
+            });
+
+            $.getJSON(courseAPI + "GetCourses", { UserName: "Daniel", UseLazyLoading: false }, function (dataCourse) {
+                $("#AddCourseSelect").empty();
+
+                var existingCourseIds = data.studentCourses.map(function (item) { return item.courseID; });
+
+                $.each(dataCourse, function (index, item) {
+                    if (existingCourseIds.indexOf(item.courseID) === -1) {
+                        $("#AddCourseSelect").append($('<option>', { value: item.courseID, text: item.courseName }));
+                    }
+                });
             });
 
         });
@@ -58,6 +98,42 @@
 
     $("#AddNewStudentBtn").click(function () {
         CreateStudent(mainAPI);
+    });
+
+    $("#AddStudentCourseBtn").click(function () {
+
+        var dataId = $(this).data("studentId");
+        var selectedCourse = $("#AddCourseSelect").val();
+        var username = "Daniel";
+
+        var apiURLWithUser = studentCourseAPI + "CreateStudentCourse?UserName=" + encodeURIComponent(username);
+
+        $.ajax({
+            url: apiURLWithUser,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                studentID: dataId,
+                courseID: selectedCourse
+            }),
+            success: function () {
+                Swal.fire({
+                    title: "Fag tilføjet!",
+                    text: "fag tilføjet til elev",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                UpdateStudentCourses(mainAPI, courseAPI, dataId);
+            },
+            error: function (xhr, status, error) {
+                Swal.fire({
+                    title: "Fejl",
+                    text: error,
+                    icon: "error"
+                });
+            }
+        });
     });
 
 });
@@ -110,8 +186,8 @@ function UpdateStudent(apiurl, id) {
         }),
         success: function () {
             Swal.fire({
-                title: "Updated!",
-                text: "Student is updated.",
+                title: "Opdateret!",
+                text: "Eleven er blevet opdateret.",
                 icon: "success",
                 showConfirmButton: false,
                 timer: 1500
@@ -121,8 +197,8 @@ function UpdateStudent(apiurl, id) {
         },
         error: function (xhr, status, error) {
             Swal.fire({
-                title: "Error",
-                text: "Could not update the student",
+                title: "Fejl",
+                text: status,
                 icon: "error"
             });
         }
@@ -135,13 +211,13 @@ function DeleteStudent(apiurl, id) {
     var apiURLWithUsername = apiurl + "/DeleteStudent/" + id + "?UserName=" + encodeURIComponent(username);
 
     Swal.fire({
-        title: "Delete Student?",
-        text: "Are you sure you want to delete this student?",
+        title: "Slet Elev?",
+        text: "Er du sikker på at du vil slette denne elev?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
+        confirmButtonText: "Ja slet eleven!"
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
@@ -149,15 +225,15 @@ function DeleteStudent(apiurl, id) {
                 type: "DELETE",
                 success: function () {
                     Swal.fire({
-                        title: "Deleted!",
-                        text: "The student has been deleted.",
+                        title: "Slettet!",
+                        text: "Eleven er blevet slettet.",
                         icon: "success"
                     });
                     GetAllStudents(apiurl);
                 },
                 error: function (xhr, status, error) {
                     Swal.fire({
-                        title: "Error",
+                        title: "Fejl",
                         text: status,
                         icon: "error"
                     });
@@ -186,8 +262,8 @@ function CreateStudent(apiurl) {
         }),
         success: function () {
             Swal.fire({
-                title: "Added!",
-                text: "New student added.",
+                title: "Tilføjet!",
+                text: "Ny elev oprettet.",
                 icon: "success",
                 showConfirmButton: false,
                 timer: 1500
@@ -198,10 +274,77 @@ function CreateStudent(apiurl) {
         },
         error: function (xhr, status, error) {
             Swal.fire({
-                title: "Error",
-                text: "Could not add the student",
+                title: "Fejl",
+                text: status,
                 icon: "error"
             });
         }
+    });
+}
+
+function UpdateStudentCourses(studentapi, courseapi, studentId) {
+    $.getJSON(studentapi + "GetStudent/" + studentId, { UserName: "Daniel", UseLazyLoading: true }, function (data) {
+        var studentCourses = $(".studentcoursestable");
+
+        studentCourses.empty();
+
+        $.each(data.studentCourses, function (index, item) {
+            studentCourses.append(
+                "<tr>" +
+                "<td>" + item.course.courseName + "</td>" +
+                "<td>" +
+                "<a class='btn btn-danger btn-sm btn-block deleteCourseBtn' data-studentId='" + data.studentID + "' data-courseId='" + item.courseID + "'>Fjern</a>" +
+                "</td>" +
+                "</tr>"
+            );
+        });
+
+        $.getJSON(courseapi + "GetCourses", { UserName: "Daniel", UseLazyLoading: false }, function (dataCourse) {
+            $("#AddCourseSelect").empty();
+
+            var existingCourseIds = data.studentCourses.map(function (item) { return item.courseID; });
+
+            $.each(dataCourse, function (index, item) {
+                if (existingCourseIds.indexOf(item.courseID) === -1) {
+                    $("#AddCourseSelect").append($('<option>', { value: item.courseID, text: item.courseName }));
+                }
+            });
+        });
+    });
+}
+
+function RemoveCourseFromStudent(studentapi, courseapi, studentcourseapi, studentId, courseId) {
+    var username = "Daniel";
+
+    var apiURLWithUsername = studentcourseapi + "DeleteStudentCourse/" + studentId + "/" + courseId + "?UserName=" + encodeURIComponent(username);
+
+    Swal.fire({
+        title: "Fjern fag",
+        text: "er du sikker på at du vil fjerne dette fag fra eleven?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ja fjern det!"
+    }).then((result) => {
+        $.ajax({
+            url: apiURLWithUsername,
+            type: "DELETE",
+            success: function () {
+                Swal.fire({
+                    title: "Slettet",
+                    text: "Faget er fjernet fra eleven.",
+                    icon: "success"
+                });
+                UpdateStudentCourses(studentapi, courseapi, studentId);
+            },
+            error: function (xhr, status, error) {
+                Swal.fire({
+                    title: "Fejl",
+                    text: status,
+                    icon: "error"
+                });
+            }
+        })
     });
 }
