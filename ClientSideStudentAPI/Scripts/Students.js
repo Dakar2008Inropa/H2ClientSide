@@ -36,13 +36,36 @@
         $("#EditFirstname").focus();
     });
 
+    $("#AddStudentModal").on('shown.bs.modal', function () {
+        $.getJSON(teamAPI + "GetTeams", { UserName: "Daniel", UseLazyLoading: false }, function (dataTeam) {
+            $("#AddTeams").empty();
+            $.each(dataTeam, function (index, item) {
+                $("#AddTeams").append($('<option>', { value: item.teamID, text: item.teamName }));
+            });
+        });
+        $("#AddFirstname").focus();
+    });
+
     $("#SaveStudentBtn").click(function ()
     {
         var dataId = $("#EditStudentModal").data("id");
         UpdateStudent(mainAPI, dataId);
     });
 
+    $("#AddStudentBtn").click(function () {
+        $("#AddStudentModal").modal("show");
+    });
+
+    $("#AddNewStudentBtn").click(function () {
+        CreateStudent(mainAPI);
+    });
+
 });
+
+function ClearAddStudent() {
+    $("#AddFirstname").val("");
+    $("#AddLastname").val("");
+}
 
 function GetAllStudents(apiurl) {
     $.getJSON(apiurl + "GetStudents", {UserName: "Daniel", UseLazyLoading: true }, function (data) {
@@ -107,5 +130,78 @@ function UpdateStudent(apiurl, id) {
 }
 
 function DeleteStudent(apiurl, id) {
+    var username = "Daniel";
 
+    var apiURLWithUsername = apiurl + "/DeleteStudent/" + id + "?UserName=" + encodeURIComponent(username);
+
+    Swal.fire({
+        title: "Delete Student?",
+        text: "Are you sure you want to delete this student?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: apiURLWithUsername,
+                type: "DELETE",
+                success: function () {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "The student has been deleted.",
+                        icon: "success"
+                    });
+                    GetAllStudents(apiurl);
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire({
+                        title: "Error",
+                        text: status,
+                        icon: "error"
+                    });
+                }
+            })
+        }
+    });
+}
+
+function CreateStudent(apiurl) {
+    var firstName = $("#AddFirstname").val();
+    var lastName = $("#AddLastname").val();
+    var teamID = $("#AddTeams").val();
+    var username = "Daniel";
+
+    var apiURLWithUser = apiurl + "CreateStudent?UserName=" + encodeURIComponent(username);
+
+    $.ajax({
+        url: apiURLWithUser,
+        type: "POST",
+        contentType: 'application/json',
+        data: JSON.stringify({
+            studentName: firstName,
+            studentLastName: lastName,
+            teamID: teamID
+        }),
+        success: function () {
+            Swal.fire({
+                title: "Added!",
+                text: "New student added.",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            $("#AddStudentModal").modal("hide");
+            ClearAddStudent();
+            GetAllStudents(apiurl);
+        },
+        error: function (xhr, status, error) {
+            Swal.fire({
+                title: "Error",
+                text: "Could not add the student",
+                icon: "error"
+            });
+        }
+    });
 }
