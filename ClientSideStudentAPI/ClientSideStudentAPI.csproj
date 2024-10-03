@@ -133,8 +133,6 @@
     <Content Include="Content\Main\MainCSS.min.css">
       <DependentUpon>MainCSS.css</DependentUpon>
     </Content>
-    <Content Include="Library\CSS\Bootstrap\bootstrap-theme.css" />
-    <Content Include="Library\CSS\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Library\CSS\Bootstrap\bootstrap.css" />
     <Content Include="Library\CSS\Bootstrap\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -161,6 +159,7 @@
     <Content Include="Library\JS\JQueryValidate\jquery.validate.unobtrusive.js" />
     <Content Include="Library\JS\JQueryValidate\jquery.validate.unobtrusive.min.js" />
     <Content Include="Library\JS\Modernizr\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Students.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -174,11 +173,15 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_NavBar.cshtml" />
+    <Content Include="Views\Home\Teams.cshtml" />
+    <Content Include="Views\Home\Courses.cshtml" />
+    <Content Include="Views\Home\CreateStudent.cshtml" />
+    <Content Include="Views\Home\CreateTeam.cshtml" />
+    <Content Include="Views\Home\CreateCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.woff2" />
@@ -187,8 +190,6 @@
     <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Library\CSS\Bootstrap\bootstrap.min.css.map" />
     <Content Include="Library\CSS\Bootstrap\bootstrap.css.map" />
-    <Content Include="Library\CSS\Bootstrap\bootstrap-theme.min.css.map" />
-    <Content Include="Library\CSS\Bootstrap\bootstrap-theme.css.map" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
