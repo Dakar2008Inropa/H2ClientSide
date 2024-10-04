@@ -1,10 +1,10 @@
 ﻿$(document).ready(function () {
-    var mainAPI = "https://studentwebapi.buchwaldshave34.dk/api/Student/";
+    var studentAPI = "https://studentwebapi.buchwaldshave34.dk/api/Student/";
     var teamAPI = "https://studentwebapi.buchwaldshave34.dk/api/Team/";
     var courseAPI = "https://studentwebapi.buchwaldshave34.dk/api/Course/";
     var studentCourseAPI = "https://studentwebapi.buchwaldshave34.dk/api/StudentCourse/";
 
-    GetAllStudents(mainAPI);
+    GetAllStudents(studentAPI);
 
     $(document).on("click", ".editBtn", function () {
         var dataId = $(this).attr("data-id");
@@ -14,13 +14,13 @@
 
     $(document).on("click", ".deleteBtn", function () {
         var dataId = $(this).attr("data-id");
-        DeleteStudent(mainAPI, dataId);
+        DeleteStudent(studentAPI, dataId);
     });
 
     $(document).on("click", ".deleteCourseBtn", function () {
         var studentId = $(this).attr("data-studentId");
         var courseId = $(this).attr("data-courseId");
-        RemoveCourseFromStudent(mainAPI, courseAPI, studentCourseAPI, studentId, courseId);
+        RemoveCourseFromStudent(studentAPI, courseAPI, studentCourseAPI, studentId, courseId);
     });
 
     $("#EditStudentModal").on('shown.bs.modal', function () {
@@ -31,7 +31,7 @@
 
         $("#AddStudentCourseBtn").data("studentId", dataId);
 
-        $.getJSON(mainAPI + "GetStudent/" + dataId, { UserName: "Daniel", UseLazyLoading: true }, function (data) {
+        $.getJSON(studentAPI + "GetStudent/" + dataId, { UserName: "Daniel", UseLazyLoading: true }, function (data) {
 
             $("#EditStudentModalLabel").text("Rediger - " + data.studentName);
             $("#EditFirstname").val(data.studentName);
@@ -89,7 +89,7 @@
     $("#SaveStudentBtn").click(function ()
     {
         var dataId = $("#EditStudentModal").data("id");
-        UpdateStudent(mainAPI, dataId);
+        UpdateStudent(studentAPI, dataId);
     });
 
     $("#AddStudentBtn").click(function () {
@@ -97,7 +97,7 @@
     });
 
     $("#AddNewStudentBtn").click(function () {
-        CreateStudent(mainAPI);
+        CreateStudent(studentAPI);
     });
 
     $("#AddStudentCourseBtn").click(function () {
@@ -124,7 +124,7 @@
                     showConfirmButton: false,
                     timer: 1500
                 });
-                UpdateStudentCourses(mainAPI, courseAPI, dataId);
+                UpdateStudentCourses(studentAPI, courseAPI, dataId);
             },
             error: function (xhr, status, error) {
                 Swal.fire({
@@ -135,7 +135,6 @@
             }
         });
     });
-
 });
 
 function ClearAddStudent() {

@@ -2,3 +2,74 @@
     ViewBag.Title = "Hold";
 }
 <h1>Hold</h1>
+
+<button type="button" class="btn btn-primary" id="AddTeamBtn">Opret Hold</button>
+
+<table class="table table-striped" id="TeamTable">
+    <thead>
+        <tr>
+            <th width="33%" class="text-center">Hold</th>
+            <th width="33%" class="text-center">Elever Tilmeldt</th>
+            <th width="33%" class="text-center">Funktioner</th>
+        </tr>
+    </thead>
+    <tbody id="TeamTableBody">
+        <tr>
+            <td>Test</td>
+            <td>Test2</td>
+            <td class="text-center">
+                <button class="btn btn-success btn-sm btn-inlineblock">Edit</button>
+                <button class="btn btn-danger btn-sm btn-inlineblock">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="EditTeamModal" tabindex="-1" role="dialog" aria-labelledby="EditTeamModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="EditTeamModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="EditTeamName">Hold</label>
+                        <input type="text" class="form-control" id="EditTeamName" placeholder="Hold" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-inlineblock" data-dismiss="modal">Luk</button>
+                <button type="button" class="btn btn-success btn-inlineblock" id="SaveTeamBtn">Gem</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AddTeamModal" tabindex="-1" role="dialog" aria-labelledby="AddTeamModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="AddStudentModalLabel">Opret Nyt Hold</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="AddTeamName">Hold</label>
+                        <input type="text" class="form-control" id="AddTeamName" placeholder="Hold" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-inlineblock" data-dismiss="modal">Luk</button>
+                <button type="button" class="btn btn-success btn-inlineblock" id="AddNewTeamBtn">Opret</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/Scripts/Teams.js"></script>
+}
