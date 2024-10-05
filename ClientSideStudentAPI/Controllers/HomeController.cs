@@ -18,6 +18,11 @@ namespace ClientSideStudentAPI.Controllers
             return View();
         }
 
+        public ActionResult Courses()
+        {
+            return View();
+        }
+
         #region PartialViews
         public PartialViewResult _NavBar()
         {

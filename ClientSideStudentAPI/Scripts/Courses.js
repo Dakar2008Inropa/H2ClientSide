@@ -1,93 +1,90 @@
 ﻿$(document).ready(function () {
-    var studentAPI = "https://studentwebapi.buchwaldshave34.dk/api/Student/";
-    var teamAPI = "https://studentwebapi.buchwaldshave34.dk/api/Team/";
     var courseAPI = "https://studentwebapi.buchwaldshave34.dk/api/Course/";
-    var studentCourseAPI = "https://studentwebapi.buchwaldshave34.dk/api/StudentCourse/";
 
-    GetAllTeams(teamAPI);
+    GetAllCourses(courseAPI);
 
     $(document).on("click", ".editBtn", function () {
         var dataId = $(this).attr("data-id");
-        $("#EditTeamModal").data("id", dataId);
-        $("#EditTeamModal").modal("show");
+        $("#EditCourseModal").data("id", dataId);
+        $("#EditCourseModal").modal("show");
     });
 
     $(document).on("click", ".deleteBtn", function () {
         var dataId = $(this).attr("data-id");
-        DeleteTeam(teamAPI, dataId);
+        DeleteCourse(courseAPI, dataId);
     });
 
-    $("#EditTeamModal").on('shown.bs.modal', function () {
+    $("#EditCourseModal").on('shown.bs.modal', function () {
         var dataId = $(this).data("id");
-        $("#EditTeamName").val("");
+        $("#EditCourseName").val("");
 
         $("#editcollapse-one").removeClass("in");
 
-        $.getJSON(teamAPI + "GetTeam/" + dataId, { UserName: "Daniel", UseLazyLoading: true }, function (data) {
-            $("#EditTeamModalLabel").text("Rediger - " + data.teamName);
-            $("#EditTeamName").val(data.teamName);
+        $.getJSON(courseAPI + "GetCourse/" + dataId, { UserName: "Daniel", UseLazyLoading: true }, function (data) {
+            $("#EditCourseModalLabel").text("Rediger - " + data.courseName);
+            $("#EditCourseName").val(data.courseName);
         });
 
         setTimeout(function () {
-            var input = document.getElementById("EditTeamName");
+            var input = document.getElementById("EditCourseName");
             input.focus();
             input.setSelectionRange(0, input.value.length);
         }, 100);
     });
 
-    $("#AddTeamModal").on('shown.bs.modal', function () {
-        $("#AddTeamName").focus();
+    $("#AddCourseModal").on('shown.bs.modal', function () {
+        $("#AddCourseName").focus();
     });
 
-    $("#SaveTeamBtn").click(function ()
+    $("#SaveCourseBtn").click(function ()
     {
-        var dataId = $("#EditTeamModal").data("id");
-        UpdateTeam(teamAPI, dataId);
+        var dataId = $("#EditCourseModal").data("id");
+        UpdateCourse(courseAPI, dataId);
     });
 
-    $("#AddTeamBtn").click(function () {
-        $("#AddTeamModal").modal("show");
+    $("#AddCourseBtn").click(function () {
+        $("#AddCourseModal").modal("show");
     });
 
-    $("#AddNewTeamBtn").click(function () {
-        CreateTeam(teamAPI);
+    $("#AddNewCourseBtn").click(function () {
+        CreateCourse(courseAPI);
     });
 
-    $("#AddTeamName").keydown(function (e) {
+    $("#AddCourseName").keydown(function (e) {
         if (e.key == "Enter") {
             e.preventDefault();
-            CreateTeam(teamAPI);
+            CreateCourse(courseAPI);
         }
     });
 
-    $("#EditTeamName").keydown(function (e) {
+    $("#EditCourseName").keydown(function (e) {
         if (e.key == "Enter") {
             e.preventDefault();
-            $("#SaveTeamBtn").click();
+            $("#SaveCourseBtn").click();
         }
     });
 });
 
-function ClearAddTeam() {
-    $("#AddTeamName").val("");
+function ClearAddCourse() {
+    $("#AddCourseName").val("");
 }
 
-function GetAllTeams(apiurl) {
-    $.getJSON(apiurl + "GetTeams", {UserName: "Daniel", UseLazyLoading: true }, function (data) {
+function GetAllCourses(apiurl) {
+    $.getJSON(apiurl + "GetCourses", {UserName: "Daniel", UseLazyLoading: true }, function (data) {
         data.sort(function (a, b) {
-            return b.teamName - a.teamName;
+            return b.courseName - a.courseName;
         });
 
-        $("#TeamTableBody").empty();
+        $("#CourseTableBody").empty();
 
         $.each(data, function (index, item) {
-            $("#TeamTableBody").append(
+            $("#CourseTableBody").append(
                 "<tr>" +
-                "<td>" + item.teamName + "</td>" +
-                "<td class='text-center'>" + item.students.length + "</td>" +
+                "<td>" + item.courseName + "</td>" +
+                "<td class='text-center'>" + item.studentCourses.length + "</td>" +
                 "<td>" +
-                "<a class='btn btn-success btn-sm btn-inlineblock editBtn' data-id='" + item.teamID + "'>Rediger</a>" +
-                "<a class='btn btn-danger btn-sm btn-inlineblock deleteBtn' data-id='" + item.teamID + "'>Slet</a>" +
+                "<a class='btn btn-success btn-sm btn-inlineblock editBtn' data-id='" + item.courseID + "'>Rediger</a>" +
+                "<a class='btn btn-danger btn-sm btn-inlineblock deleteBtn' data-id='" + item.courseID + "'>Slet</a>" +
                 "</td>" +
                 "</tr>"
             );
@@ -95,29 +92,29 @@ function GetAllTeams(apiurl) {
     });
 }
 
-function UpdateTeam(apiurl, id) {
-    var updateTeamName = $("#EditTeamName").val();
+function UpdateCourse(apiurl, id) {
+    var updateCourseName = $("#EditCourseName").val();
     var username = "Daniel";
-    var apiURLWithUsername = apiurl + "UpdateTeam/" + id + "?UserName=" + encodeURIComponent(username);
+    var apiURLWithUsername = apiurl + "UpdateCourse/" + id + "?UserName=" + encodeURIComponent(username);
 
     $.ajax({
         url: apiURLWithUsername,
         type: "PUT",
         contentType: 'application/json',
         data: JSON.stringify({
-            teamID: id,
-            teamName: updateTeamName,
+            courseID: id,
+            courseName: updateCourseName,
         }),
         success: function () {
             Swal.fire({
                 title: "Opdateret!",
-                text: "Holdet er blevet opdateret.",
+                text: "Faget er blevet opdateret.",
                 icon: "success",
                 showConfirmButton: false,
                 timer: 1500
             });
-            $("#EditTeamModal").modal("hide");
-            GetAllTeams(apiurl);
+            $("#EditCourseModal").modal("hide");
+            GetAllCourses(apiurl);
         },
         error: function (xhr, status, error) {
             Swal.fire({
@@ -129,19 +126,19 @@ function UpdateTeam(apiurl, id) {
     });
 }
 
-function DeleteTeam(apiurl, id) {
+function DeleteCourse(apiurl, id) {
     var username = "Daniel";
 
-    var apiURLWithUsername = apiurl + "/DeleteTeam/" + id + "?UserName=" + encodeURIComponent(username);
+    var apiURLWithUsername = apiurl + "/DeleteCourse/" + id + "?UserName=" + encodeURIComponent(username);
 
     Swal.fire({
-        title: "Slet Hold?",
-        text: "Er du sikker på at du vil slette dette hold?",
+        title: "Slet Fag?",
+        text: "Er du sikker på at du vil slette dette fag?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Ja slet holdet!"
+        confirmButtonText: "Ja slet faget!"
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
@@ -150,12 +147,12 @@ function DeleteTeam(apiurl, id) {
                 success: function () {
                     Swal.fire({
                         title: "Slettet!",
-                        text: "Holdet er blevet slettet.",
+                        text: "Faget er blevet slettet.",
                         icon: "success",
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    GetAllTeams(apiurl);
+                    GetAllCourses(apiurl);
                 },
                 error: function (xhr, status, error) {
                     Swal.fire({
@@ -169,30 +166,30 @@ function DeleteTeam(apiurl, id) {
     });
 }
 
-function CreateTeam(apiurl) {
-    var addTeamName = $("#AddTeamName").val();
+function CreateCourse(apiurl) {
+    var addcourseName = $("#AddCourseName").val();
     var username = "Daniel";
 
-    var apiURLWithUser = apiurl + "CreateTeam?UserName=" + encodeURIComponent(username);
+    var apiURLWithUser = apiurl + "CreateCourse?UserName=" + encodeURIComponent(username);
 
     $.ajax({
         url: apiURLWithUser,
         type: "POST",
         contentType: 'application/json',
         data: JSON.stringify({
-            teamName: addTeamName
+            courseName: addcourseName
         }),
         success: function () {
             Swal.fire({
                 title: "Tilføjet!",
-                text: "Nyt hold oprettet.",
+                text: "Nyt fag oprettet.",
                 icon: "success",
                 showConfirmButton: false,
                 timer: 1500
             });
-            $("#AddTeamModal").modal("hide");
-            ClearAddTeam();
-            GetAllTeams(apiurl);
+            $("#AddCourseModal").modal("hide");
+            ClearAddCourse();
+            GetAllCourses(apiurl);
         },
         error: function (xhr, status, error) {
             Swal.fire({

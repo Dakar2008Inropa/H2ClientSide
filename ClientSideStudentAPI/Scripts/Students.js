@@ -73,7 +73,12 @@
             });
 
         });
-        $("#EditFirstname").focus();
+
+        setTimeout(function () {
+            var input = document.getElementById("EditFirstname");
+            input.focus();
+            input.setSelectionRange(0, input.value.length);
+        }, 100);
     });
 
     $("#AddStudentModal").on('shown.bs.modal', function () {
@@ -134,6 +139,44 @@
                 });
             }
         });
+    });
+
+    $("#AddLastname").keydown(function (e) {
+        if (e.key == "Enter") {
+            if ($("#AddFirstname").val()) {
+                e.preventDefault();
+                CreateStudent(studentAPI);
+            }
+            else {
+                Swal.fire({
+                    title: "Fejl",
+                    text: "Du skal udfylde fornavn først!",
+                    icon: "error",
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        }
+    });
+
+    $("#AddFirstname").keydown(function (e) {
+        if (e.key == "Enter") {
+            if ($("#AddLastname").val()) {
+                e.preventDefault();
+                CreateStudent(studentAPI);
+            }
+            else {
+                Swal.fire({
+                    title: "Fejl",
+                    text: "Du skal udfylde efternavn først!",
+                    icon: "error",
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        }
     });
 });
 
